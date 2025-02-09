@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+# NoContext
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 **No Context, Just Yapping**
 
-Currently, two official plugins are available:
+NoContext adalah platform anonim untuk berbagi pikiran tanpa login. Pengguna dapat memposting teks tanpa perlu akun, tetapi tetap memiliki ID unik untuk tracking postingan mereka.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🌟 **Tujuan & Konsep**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+NoContext dibuat sebagai tempat bagi siapa saja untuk mengekspresikan pikiran tanpa perlu memikirkan identitas atau konteks. Dengan konsep anonim, pengguna dapat berbagi keluh kesah, pemikiran random, atau sekadar berceloteh tanpa tekanan sosial.
 
-- Configure the top-level `parserOptions` property like this:
+### **Kenapa NoContext?**
+- **Bebas & Anonim** → Tidak perlu login atau membuat akun.
+- **Simpel & Cepat** → Fokus pada teks tanpa gangguan.
+- **Tidak Ada Interaksi Langsung** → Hanya posting, tanpa komentar atau balasan.
+- **Eksplorasi Konten** → Feed acak atau trending berdasarkan engagement.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🔧 **Cara Menggunakan**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. **Buka NoContext**
+2. **Tulis apa yang ada di pikiranmu**
+3. **Posting dan lanjutkan harimu**
+4. **Jelajahi postingan orang lain jika ingin**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+## 🎯 **Roadmap Pengembangan**
+
+- [ ] Basic posting system
+- [ ] Explore page dengan random/trending posts
+- [ ] Like/upvote system
+- [ ] Moderasi konten otomatis
+- [ ] Dukungan media (gambar/audio)
+- [ ] Login opsional untuk claim akun
+
+---
+
+## 💡 **Kontribusi**
+
+Buka Pull Request atau diskusi di Issues untuk saran dan fitur baru!
+
+📧 **Kontak:** [codewithwan@gmail.com](mailto:codewithwan@gmail.com)

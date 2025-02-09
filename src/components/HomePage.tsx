@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Heart, Share2, MoreHorizontal, PlusCircle, Home, Compass, User, Settings } from 'lucide-react';
 import {
   Dialog,
@@ -111,6 +111,45 @@ const ReportModal = ({ onClose, onSubmit }: ReportModalProps) => {
   );
 };
 
+// Post Options Menu Component
+interface PostOptionsMenuProps {
+  isOwner: boolean;
+  onEdit: () => void;
+  onDelete: () => void;
+  onReport: () => void;
+  onClose: () => void;
+}
+
+const PostOptionsMenu = ({ isOwner, onEdit, onDelete, onReport, onClose }: PostOptionsMenuProps) => {
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onClose]);
+
+  return (
+    <div ref={menuRef} className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+      {isOwner ? (
+        <>
+          <button onClick={onEdit} className="block w-full text-left px-4 py-2 hover:bg-gray-100">Edit</button>
+          <button onClick={onDelete} className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-red-600">Delete</button>
+        </>
+      ) : (
+        <button onClick={onReport} className="block w-full text-left px-4 py-2 hover:bg-gray-100 text-red-600">Report</button>
+      )}
+    </div>
+  );
+};
+
 // Post Card Component (Updated with Edit Modal)
 interface PostCardProps {
   username: string;
@@ -124,6 +163,9 @@ const PostCard = ({ username, timestamp, content, font, likes }: PostCardProps) 
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(likes);
   const [postContent, setPostContent] = useState(content);
+  const [showOptions, setShowOptions] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
   const currentUser = "creative_writer"; // Replace with actual current user logic
 
   const handleLike = () => {
@@ -133,10 +175,16 @@ const PostCard = ({ username, timestamp, content, font, likes }: PostCardProps) 
 
   const handleEdit = (newContent: { content: string; font: string }) => {
     setPostContent(newContent.content);
+    setShowEditModal(false);
+  };
+
+  const handleDelete = () => {
+    console.log('Post deleted');
   };
 
   const handleReport = (reason: string) => {
     console.log(`Reported for: ${reason}`);
+    setShowReportModal(false);
   };
 
   const getFontClass = () => {
@@ -149,7 +197,7 @@ const PostCard = ({ username, timestamp, content, font, likes }: PostCardProps) 
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 mb-4">
+    <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 mb-4 relative">
       <div className="flex items-center justify-between p-4 border-b border-gray-100">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-400 to-indigo-500 flex items-center justify-center text-white font-bold">
@@ -160,31 +208,18 @@ const PostCard = ({ username, timestamp, content, font, likes }: PostCardProps) 
             <p className="text-xs text-gray-500">{timestamp}</p>
           </div>
         </div>
-        <Dialog>
-          <DialogTrigger asChild>
-            <button className="text-gray-400 hover:text-gray-600">
-              <MoreHorizontal className="w-5 h-5" />
-            </button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>{username === currentUser ? "Edit Post" : "Report Post"}</DialogTitle>
-            </DialogHeader>
-            {username === currentUser ? (
-              <PostModal
-                isEdit={true}
-                initialContent={postContent}
-                onClose={() => {}}
-                onSubmit={handleEdit}
-              />
-            ) : (
-              <ReportModal
-                onClose={() => {}}
-                onSubmit={handleReport}
-              />
-            )}
-          </DialogContent>
-        </Dialog>
+        <button className="text-gray-400 hover:text-gray-600" onClick={() => setShowOptions(!showOptions)}>
+          <MoreHorizontal className="w-5 h-5" />
+        </button>
+        {showOptions && (
+          <PostOptionsMenu
+            isOwner={username === currentUser}
+            onEdit={() => setShowEditModal(true)}
+            onDelete={handleDelete}
+            onReport={() => setShowReportModal(true)}
+            onClose={() => setShowOptions(false)}
+          />
+        )}
       </div>
 
       <div className={`p-6 ${getFontClass()} bg-gradient-to-br from-gray-50 to-white`}>
@@ -204,6 +239,36 @@ const PostCard = ({ username, timestamp, content, font, likes }: PostCardProps) 
           <span>Share</span>
         </button>
       </div>
+
+      {showEditModal && (
+        <Dialog open={showEditModal} onOpenChange={setShowEditModal}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Edit Post</DialogTitle>
+            </DialogHeader>
+            <PostModal
+              isEdit={true}
+              initialContent={postContent}
+              onClose={() => setShowEditModal(false)}
+              onSubmit={handleEdit}
+            />
+          </DialogContent>
+        </Dialog>
+      )}
+
+      {showReportModal && (
+        <Dialog open={showReportModal} onOpenChange={setShowReportModal}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Report Post</DialogTitle>
+            </DialogHeader>
+            <ReportModal
+              onClose={() => setShowReportModal(false)}
+              onSubmit={handleReport}
+            />
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 };
