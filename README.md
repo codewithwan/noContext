@@ -2,44 +2,44 @@
 
 🚀 **No Context, Just Yapping**
 
-NoContext adalah platform anonim untuk berbagi pikiran tanpa login. Pengguna dapat memposting teks tanpa perlu akun, tetapi tetap memiliki ID unik untuk tracking postingan mereka.
+NoContext is an anonymous platform for sharing thoughts without the need to log in. Users can post text freely without creating an account, yet still have a unique ID to track their posts.
 
 ---
 
-## 🌟 **Tujuan & Konsep**
+## 🌟 **Purpose & Concept**
 
-NoContext dibuat sebagai tempat bagi siapa saja untuk mengekspresikan pikiran tanpa perlu memikirkan identitas atau konteks. Dengan konsep anonim, pengguna dapat berbagi keluh kesah, pemikiran random, atau sekadar berceloteh tanpa tekanan sosial.
+NoContext is designed as a space where anyone can express their thoughts without worrying about identity or context. With its anonymous approach, users can vent, share random thoughts, or simply yap without social pressure.
 
-### **Kenapa NoContext?**
-- **Bebas & Anonim** → Tidak perlu login atau membuat akun.
-- **Simpel & Cepat** → Fokus pada teks tanpa gangguan.
-- **Tidak Ada Interaksi Langsung** → Hanya posting, tanpa komentar atau balasan.
-- **Eksplorasi Konten** → Feed acak atau trending berdasarkan engagement.
-
----
-
-## 🔧 **Cara Menggunakan**
-
-1. **Buka NoContext**
-2. **Tulis apa yang ada di pikiranmu**
-3. **Posting dan lanjutkan harimu**
-4. **Jelajahi postingan orang lain jika ingin**
+### **Why NoContext?**
+- **Free & Anonymous** → No login or account creation required.
+- **Simple & Fast** → Focuses on text without distractions.
+- **No Direct Interaction** → Only posting, no comments or replies.
+- **Content Exploration** → Random or trending posts based on engagement.
 
 ---
 
-## 🎯 **Roadmap Pengembangan**
+## 🔧 **How It Works**
+
+1. **Open NoContext**
+2. **Write whatever is on your mind**
+3. **Post and move on with your day**
+4. **Explore other people's posts if you want**
+
+---
+
+## 🎯 **Development Roadmap**
 
 - [ ] Basic posting system
-- [ ] Explore page dengan random/trending posts
+- [ ] Explore page with random/trending posts
 - [ ] Like/upvote system
-- [ ] Moderasi konten otomatis
-- [ ] Dukungan media (gambar/audio)
-- [ ] Login opsional untuk claim akun
+- [ ] Automated content moderation
+- [ ] Media support (images/audio)
+- [ ] Optional login to claim accounts
 
 ---
 
-## 💡 **Kontribusi**
+## 💡 **Contributions**
 
-Buka Pull Request atau diskusi di Issues untuk saran dan fitur baru!
+Open a Pull Request or start a discussion in Issues for suggestions and new features!
 
-📧 **Kontak:** [codewithwan@gmail.com](mailto:codewithwan@gmail.com)
+📧 **Contact:** [codewithwan@gmail.com](mailto:codewithwan@gmail.com)
