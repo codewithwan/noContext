@@ -10,7 +10,7 @@ import {
 
 interface UsernameSetupProps {
   onComplete: (username: string) => void;
-  onSkip: () => void; // Add onSkip prop
+  onSkip: () => void; 
 }
 
 const UsernameSetup: React.FC<UsernameSetupProps> = ({ onComplete, onSkip }) => {
