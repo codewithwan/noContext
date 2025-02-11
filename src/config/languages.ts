@@ -3,16 +3,17 @@ import id from './languages/id.json';
 import es from './languages/es.json';
 import fr from './languages/fr.json';
 
-export const languages = {
+export type LanguageKey = 'en' | 'id' | 'es' | 'fr';
+
+export const languages: Record<LanguageKey, Language> = {
   en,
   id,
   es,
   fr
 };
 
-export type LanguageKey = keyof typeof languages;
-
 export interface Language {
+  usernameRequired: string;
   welcome: string;
   createPost: string;
   editPost: string;
@@ -43,4 +44,9 @@ export interface Language {
   pureExpressionDesc: string;
   lightningFast: string;
   lightningFastDesc: string;
+  chooseUsername: string;
+  usernameDesc: string;
+  selectLanguage: string;
+  createIdentity: string;
+  footerText: string;
 }

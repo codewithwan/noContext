@@ -39,3 +39,6 @@ export const useLanguage = () => {
   }
   return context;
 };
+
+export type { LanguageKey };
+

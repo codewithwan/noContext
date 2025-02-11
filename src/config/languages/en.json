@@ -28,5 +28,11 @@
   "pureExpression": "Pure Expression",
   "pureExpressionDesc": "Share your thoughts freely without the pressure of likes or comments.",
   "lightningFast": "Lightning Fast",
-  "lightningFastDesc": "Experience seamless performance with our lightweight platform."
+  "lightningFastDesc": "Experience seamless performance with our lightweight platform.",
+  "chooseUsername": "Choose your username",
+  "usernameDesc": "This username will appear on all your posts",
+  "selectLanguage": "Select Language",
+  "createIdentity": "Create your unique identity",
+  "footerText": "By creating a username, you become part of a community that values freedom of expression",
+  "usernameRequired": "Username is required"
 }

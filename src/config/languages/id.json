@@ -28,5 +28,11 @@
   "pureExpression": "Ekspresi Murni",
   "pureExpressionDesc": "Bagikan pemikiran Anda dengan bebas tanpa tekanan suka atau komentar.",
   "lightningFast": "Sangat Cepat",
-  "lightningFastDesc": "Nikmati kinerja yang mulus dengan platform ringan kami."
+  "lightningFastDesc": "Nikmati kinerja yang mulus dengan platform ringan kami.",
+  "chooseUsername": "Pilih username kamu",
+  "usernameDesc": "Username ini akan muncul di setiap post kamu",
+  "selectLanguage": "Pilih Bahasa",
+  "createIdentity": "Buat identitas unikmu",
+  "footerText": "Dengan membuat username, kamu akan menjadi bagian dari komunitas yang menghargai kebebasan berekspresi",
+  "usernameRequired": "Username diperlukan"
 }
