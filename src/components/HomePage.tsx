@@ -7,8 +7,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/Dialog";
-import PostCard from './molecules/PostCard'; // Updated import path
-import PostModal from './molecules/PostModal'; // Updated import path
+import PostCard from './molecules/PostCard'; 
+import PostModal from './molecules/PostModal'; 
 
 
 

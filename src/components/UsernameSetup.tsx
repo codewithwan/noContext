@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Check, AlertCircle } from 'lucide-react';
+import { useLanguage, LanguageKey } from '../hooks/useLanguage';
 import {
   Dialog,
   DialogContent,
@@ -7,25 +8,27 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/Dialog";
+import { languages } from '../config/languages';
 
 interface UsernameSetupProps {
   onComplete: (username: string) => void;
-  onSkip: () => void; // Add onSkip prop
+  onSkip: () => void; 
 }
 
 const UsernameSetup: React.FC<UsernameSetupProps> = ({ onComplete, onSkip }) => {
   const [username, setUsername] = useState('');
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState('');
+  const { language, changeLanguage } = useLanguage();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!username.trim()) {
-      setError('Username is required');
+      setError(language.usernameRequired || 'Username is required');
       return;
     }
     if (!agreed) {
-      setError('Please agree to the community guidelines');
+      setError(language.agreeGuidelines);
       return;
     }
     // Call the onComplete callback with the username
@@ -36,20 +39,20 @@ const UsernameSetup: React.FC<UsernameSetupProps> = ({ onComplete, onSkip }) => 
 
   const guidelines = [
     {
-      title: "Kebebasan Berekspresi",
-      description: "Anda bebas mengekspresikan pemikiran dan ide, namun tetap menghormati hak dan perasaan pengguna lain."
+      title: language.freedomOfExpression,
+      description: language.freedomOfExpressionDesc
     },
     {
-      title: "Privasi",
-      description: "Walaupun platform ini anonim, hindari membagikan informasi pribadi yang dapat membahayakan Anda atau orang lain."
+      title: language.privacy,
+      description: language.privacyDesc
     },
     {
-      title: "Konten yang Dilarang",
-      description: "Dilarang keras menyebarkan konten ilegal, SARA, pornografi, atau hal-hal yang dapat merugikan pihak lain."
+      title: language.prohibitedContent,
+      description: language.prohibitedContentDesc
     },
     {
-      title: "Tanggung Jawab",
-      description: "Setiap posting yang Anda buat adalah tanggung jawab Anda. Pikirkan dampaknya sebelum membagikan."
+      title: language.responsibility,
+      description: language.responsibilityDesc
     }
   ];
 
@@ -61,7 +64,7 @@ const UsernameSetup: React.FC<UsernameSetupProps> = ({ onComplete, onSkip }) => 
           <span className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
             noContext
           </span>
-          <p className="mt-2 text-gray-600">Buat identitas unikmu</p>
+          <p className="mt-2 text-gray-600">{language.createIdentity}</p>
         </div>
 
         {/* Form Card */}
@@ -70,7 +73,7 @@ const UsernameSetup: React.FC<UsernameSetupProps> = ({ onComplete, onSkip }) => 
             {/* Username Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Username
+                {language.username}
               </label>
               <input
                 type="text"
@@ -80,12 +83,29 @@ const UsernameSetup: React.FC<UsernameSetupProps> = ({ onComplete, onSkip }) => 
                   setError('');
                 }}
                 className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                placeholder="Pilih username kamu"
+                placeholder={language.chooseUsername}
                 maxLength={30}
               />
               <p className="mt-2 text-sm text-gray-500">
-                Username ini akan muncul di setiap post kamu
+                {language.usernameDesc}
               </p>
+            </div>
+
+            {/* Language Selector */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {language.selectLanguage}
+              </label>
+              <select
+                value={Object.keys(languages).find(key => languages[key as LanguageKey] === language)}
+                onChange={(e) => changeLanguage(e.target.value as LanguageKey)}
+                className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              >
+                <option value="en">English</option>
+                <option value="id">Indonesia</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+              </select>
             </div>
 
             {/* Guidelines Checkbox */}
@@ -96,12 +116,12 @@ const UsernameSetup: React.FC<UsernameSetupProps> = ({ onComplete, onSkip }) => 
                     type="button"
                     className="text-sm text-blue-600 hover:text-blue-700 hover:underline"
                   >
-                    Baca Kebijakan Komunitas
+                    {language.readCommunityGuidelines}
                   </button>
                 </DialogTrigger>
                 <DialogContent className="max-w-2xl">
                   <DialogHeader>
-                    <DialogTitle>Kebijakan Komunitas noContext</DialogTitle>
+                    <DialogTitle>{language.communityGuidelines}</DialogTitle>
                   </DialogHeader>
                   <div className="mt-4 space-y-6">
                     {guidelines.map((guideline, index) => (
@@ -128,7 +148,7 @@ const UsernameSetup: React.FC<UsernameSetupProps> = ({ onComplete, onSkip }) => 
                   />
                 </div>
                 <label htmlFor="guidelines" className="ml-3 text-sm text-gray-600">
-                  Saya setuju dengan kebijakan komunitas noContext
+                  {language.agreeGuidelines}
                 </label>
               </div>
             </div>
@@ -146,7 +166,7 @@ const UsernameSetup: React.FC<UsernameSetupProps> = ({ onComplete, onSkip }) => 
               type="submit"
               className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:shadow-lg hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-2"
             >
-              <span>Mulai Bercerita</span>
+              <span>{language.startYapping}</span>
               <Check className="w-5 h-5" />
             </button>
           </form>
@@ -155,13 +175,13 @@ const UsernameSetup: React.FC<UsernameSetupProps> = ({ onComplete, onSkip }) => 
             onClick={onSkip}
             className="w-full mt-4 py-3 px-4 bg-gray-300 text-gray-700 rounded-lg hover:shadow-lg hover:opacity-90 transition-all duration-200 flex items-center justify-center gap-2"
           >
-            <span>Nanti Saja</span>
+            <span>{language.skip}</span>
           </button>
         </div>
 
         {/* Footer */}
         <p className="mt-8 text-center text-sm text-gray-500">
-          Dengan membuat username, kamu akan menjadi bagian dari komunitas yang menghargai kebebasan berekspresi
+          {language.footerText}
         </p>
       </div>
     </div>
